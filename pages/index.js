@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Eun-Ng Portfolio</title>
+        <title>Eun - Portfolio</title>
         <meta name='description' content='남궁은 포트폴리오' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
