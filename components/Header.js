@@ -7,10 +7,26 @@ const Header = () => {
             <span className='ml-3 text-xl'>Portfolio</span>
           </a>
           <nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
-            <a className='mr-5 hover:text-gray-900'>Home</a>
+            <a className='mr-5 hover:text-gray-900' href=''>
+              Home
+            </a>
             <a className='mr-5 hover:text-gray-900'>Projects</a>
-            <a className='mr-5 hover:text-gray-900'>Blog</a>
-            <a className='mr-5 hover:text-gray-900'>GitHub</a>
+            <a
+              className='mr-5 hover:text-gray-900'
+              href='https://eun-ng.tistory.com/'
+              target='_blank'
+              rel='noreferrer'
+            >
+              Blog
+            </a>
+            <a
+              className='mr-5 hover:text-gray-900'
+              href='https://github.com/Eun-Ng'
+              target='_blank'
+              rel='noreferrer'
+            >
+              GitHub
+            </a>
           </nav>
           <button className='inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0'>
             Button
