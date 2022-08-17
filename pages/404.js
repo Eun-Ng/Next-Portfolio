@@ -1,8 +1,15 @@
+import React from 'react';
+import Lottie from 'react-lottie-player';
+import lottieJson from '../public/404.json';
+
 const PageNotFound = () => {
   return (
-    <>
-      <h1>페이지를 찾을 수 없습니다.</h1>
-    </>
+    <Lottie
+      loop
+      animationData={lottieJson}
+      play
+      style={{width: '50vw', height: '50vh', transform: 'translate(50%, 50%)'}}
+    />
   );
 };
 
