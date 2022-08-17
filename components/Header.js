@@ -1,3 +1,12 @@
+import Link from 'next/link';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {
+  faHouseChimney,
+  faBlog,
+  faBoxArchive,
+} from '@fortawesome/free-solid-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
+
 const Header = () => {
   return (
     <>
@@ -7,26 +16,40 @@ const Header = () => {
             <span className='ml-3 text-xl'>Portfolio</span>
           </a>
           <nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
-            <a className='mr-5 hover:text-gray-900' href=''>
-              Home
-            </a>
-            <a className='mr-5 hover:text-gray-900'>Projects</a>
-            <a
-              className='mr-5 hover:text-gray-900'
-              href='https://eun-ng.tistory.com/'
-              target='_blank'
-              rel='noreferrer'
-            >
-              Blog
-            </a>
-            <a
-              className='mr-5 hover:text-gray-900'
-              href='https://github.com/Eun-Ng'
-              target='_blank'
-              rel='noreferrer'
-            >
-              GitHub
-            </a>
+            <Link href='/'>
+              <a className='mr-5 hover:text-gray-900'>
+                <FontAwesomeIcon icon={faHouseChimney} />
+                Home
+              </a>
+            </Link>
+
+            <Link href='/Project'>
+              <a className='mr-5 hover:text-gray-900'>
+                <FontAwesomeIcon icon={faBoxArchive} />
+                Projects
+              </a>
+            </Link>
+            <Link href='https://eun-ng.tistory.com/'>
+              <a
+                className='mr-5 hover:text-gray-900'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FontAwesomeIcon icon={faBlog} />
+                Blog
+              </a>
+            </Link>
+
+            <Link href='https://github.com/Eun-Ng'>
+              <a
+                className='mr-5 hover:text-gray-900'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FontAwesomeIcon icon={faGithub} />
+                GitHub
+              </a>
+            </Link>
           </nav>
         </div>
       </header>
