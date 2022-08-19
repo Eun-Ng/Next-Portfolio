@@ -17,9 +17,7 @@ const MainContents = () => {
         </p>
         <div className='flex justify-center'>
           <Link href='/Projects'>
-            <a className='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'>
-              My Projects
-            </a>
+            <a className='projectBtn'>My Projects</a>
           </Link>
         </div>
       </div>
