@@ -2,8 +2,7 @@ import Layout from '../components/Layout';
 import Head from 'next/head';
 import {TOKEN, DATABASE_ID} from '../config';
 
-const Projects = ({projectNames}) => {
-  console.log(projectNames);
+const Projects = ({}) => {
   return (
     <>
       <Layout>
@@ -26,7 +25,7 @@ export async function getStaticProps() {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Notion-Version': '2022-06-28',
+      'Notion-Version': '2022-02-22',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${TOKEN}`,
     },
@@ -40,11 +39,13 @@ export async function getStaticProps() {
 
   const projects = await res.json();
 
-  const projectNames = projects.results.map((aProject) => aProject.properties);
+  const projectNames = projects.results.map(
+    (aProject) => aProject.properties.Name.title[0].plain_text
+  );
 
-  console.log(`projectNames: ${projectNames}`);
+  console.log(projectNames);
 
   return {
-    props: {projectNames}, // will be passed to the page component as props
+    props: {}, // will be passed to the page component as props
   };
 }
