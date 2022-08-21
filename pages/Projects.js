@@ -1,19 +1,21 @@
 import Layout from '../components/Layout';
 import Head from 'next/head';
+import ProjectItems from '../components/projects/Project-items';
 import {TOKEN, DATABASE_ID} from '../config';
 
-const Projects = ({}) => {
+const Projects = ({projects}) => {
   return (
-    <>
-      <Layout>
-        <Head>
-          <title>Eun - Portfolio</title>
-          <meta name='description' content='남궁은 포트폴리오' />
-          <link rel='icon' href='/favicon.ico' />
-        </Head>
-        <h1>프로젝트</h1>
-      </Layout>
-    </>
+    <Layout>
+      <Head>
+        <title>Eun - Portfolio</title>
+        <meta name='description' content='남궁은 포트폴리오' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <h1>총 프로젝트: {projects.results.length}개</h1>
+      {projects.results.map((aProject) => (
+        <ProjectItems key={aProject.id} data={aProject} />
+      ))}
+    </Layout>
   );
 };
 
@@ -39,13 +41,7 @@ export async function getStaticProps() {
 
   const projects = await res.json();
 
-  const projectNames = projects.results.map(
-    (aProject) => aProject.properties.Name.title[0].plain_text
-  );
-
-  console.log(projectNames);
-
   return {
-    props: {}, // will be passed to the page component as props
+    props: {projects}, // will be passed to the page component as props
   };
 }
