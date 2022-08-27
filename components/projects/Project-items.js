@@ -11,6 +11,7 @@ const ProjectItems = ({data}) => {
   const endDay = period.end;
   const progress = dataSource.Progress.status.name;
   const stacks = dataSource.Stacks.multi_select.map((stacks) => stacks.name);
+  const imgSrc = data.cover.file.url;
 
   const calculatedPeriod = (startDay, endDay) => {
     const startDateArr = startDay.split('-');
@@ -23,8 +24,6 @@ const ProjectItems = ({data}) => {
     );
     const endDate = new Date(endDateArr[0], endDateArr[1], endDateArr[2]);
 
-    console.log(startDate, endDate);
-
     const diffInMs = Math.abs(endDate - startDate);
     const result = `${diffInMs / (1000 * 60 * 60 * 24)}일`;
 
@@ -33,6 +32,7 @@ const ProjectItems = ({data}) => {
 
   return (
     <div className='flex flex-col p-6 m-3 bg-slate-700 rounded-md'>
+      <Image src={imgSrc} width='100%' height='100%' />
       <h1>{title}</h1>
       <p>{desc}</p>
       <a target='_blank' href={notion} rel='noreferrer'>
