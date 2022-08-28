@@ -11,7 +11,7 @@ const ProjectItems = ({data}) => {
   const endDay = period.end;
   const progress = dataSource.Progress.status.name;
   const stacks = dataSource.Stacks.multi_select.map((stacks) => stacks.name);
-  const imgSrc = data.cover.file.url;
+  const imgSrc = data.cover.file?.url || data.cover.external?.url;
 
   const calculatedPeriod = (startDay, endDay) => {
     const startDateArr = startDay.split('-');
@@ -31,23 +31,34 @@ const ProjectItems = ({data}) => {
   };
 
   return (
-    <div className='flex flex-col p-6 m-3 bg-slate-700 rounded-md'>
-      <Image src={imgSrc} width='100%' height='100%' />
-      <h1>{title}</h1>
-      <p>{desc}</p>
-      <a target='_blank' href={notion} rel='noreferrer'>
-        👉 노션 상세페이지
-      </a>
+    <div className='flex flex-col m-3 bg-slate-700 rounded-xl w-full'>
+      <Image
+        className='rounded-t-xl'
+        src={imgSrc}
+        alt='cover image'
+        width='100%'
+        height='60%'
+        layout='responsive'
+        objectFit='cover'
+        quality={100}
+      />
+      <div className='p-4 flex flex-col'>
+        <h1>{title}</h1>
+        <p>{desc}</p>
+        <a target='_blank' href={notion} rel='noreferrer'>
+          👉 노션 상세페이지
+        </a>
 
-      <a target='_blank' href={gitHub} rel='noreferrer'>
-        👉 GitHub
-      </a>
-      <p>
-        프로젝트 기간: {startDay} ~ {endDay} (
-        {calculatedPeriod(startDay, endDay)})
-      </p>
-      <p>{stacks}</p>
-      <p>{progress}</p>
+        <a target='_blank' href={gitHub} rel='noreferrer'>
+          👉 GitHub
+        </a>
+        <p>
+          프로젝트 기간: {startDay} ~ {endDay} (
+          {calculatedPeriod(startDay, endDay)})
+        </p>
+        <p>{stacks}</p>
+        <p>{progress}</p>
+      </div>
     </div>
   );
 };
