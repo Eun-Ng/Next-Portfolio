@@ -6,7 +6,7 @@ import {TOKEN, DATABASE_ID} from '../config';
 const Projects = ({projects}) => {
   return (
     <Layout>
-      <div className='flex flex-col items-center justify-center min-h-screen px-6 mb-10'>
+      <div className='flex flex-col items-center justify-center min-h-screen pr-6 mb-10'>
         <Head>
           <title>Eun - Portfolio</title>
           <meta name='description' content='남궁은 포트폴리오' />
@@ -20,7 +20,7 @@ const Projects = ({projects}) => {
           개
         </h1>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 py-10 m-6 gap-8 w-full'>
+        <div className='grid grid-cols-1 md:grid-cols-3 py-10 m-6 gap-8 w-full'>
           {projects.results.map((aProject) => (
             <ProjectItems key={aProject.id} data={aProject} />
           ))}

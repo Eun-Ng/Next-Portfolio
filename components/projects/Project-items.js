@@ -9,9 +9,11 @@ const ProjectItems = ({data}) => {
   const period = dataSource.Period.date;
   const startDay = period.start;
   const endDay = period.end;
-  const progress = dataSource.Progress.status.name;
+  const process = dataSource.Process.status.name;
   const stacks = dataSource.Stacks.multi_select;
   const imgSrc = data.cover.file?.url || data.cover.external?.url;
+
+  console.log(dataSource.Process);
 
   // 날짜 차이 구하는 로직
   const calculatedPeriod = (startDay, endDay) => {
@@ -24,74 +26,114 @@ const ProjectItems = ({data}) => {
       startDateArr[2]
     );
     const endDate = new Date(endDateArr[0], endDateArr[1], endDateArr[2]);
-
     const diffInMs = Math.abs(endDate - startDate);
     const result = `${diffInMs / (1000 * 60 * 60 * 24)}일`;
 
     return result;
   };
 
-  const setTag = (aTag) => {
-    // purple / green / blue / red / gray
-    if (aTag.color === 'purple') {
+  // 스택 태그 색깔
+  const stackCol = (stack) => {
+    if (stack.color === 'gray') {
       return (
         <h1
-          className='px-2 py-1 mr-2 rounded-md bg-purple-300 dark:bg-purple-700 w-30'
-          key={aTag.id}
+          className='px-2 py-1 mr-2 rounded-md bg-gray-300 dark:bg-gray-500 w-30'
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
         </h1>
       );
-    } else if (aTag.color === 'green') {
+    } else if (stack.color === 'orange') {
       return (
         <h1
-          className='px-2 py-1 mr-2 rounded-md bg-green-300 dark:bg-green-700 w-30'
-          key={aTag.id}
+          className='px-2 py-1 mr-2 rounded-md bg-orange-500 dark:bg-orange-700 w-30'
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
         </h1>
       );
-    } else if (aTag.color === 'blue') {
+    } else if (stack.color === 'brown') {
       return (
         <h1
-          className='px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30'
-          key={aTag.id}
+          className='px-2 py-1 mr-2 rounded-md bg-red-700 dark:bg-red-900 w-30'
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
         </h1>
       );
-    } else if (aTag.color === 'red') {
+    } else if (stack.color === 'blue') {
       return (
         <h1
-          className='px-2 py-1 mr-2 rounded-md bg-red-400 dark:bg-red-700 w-30'
-          key={aTag.id}
+          className='px-2 py-1 mr-2 rounded-md bg-blue-500 dark:bg-blue-700 w-30'
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
         </h1>
       );
-    } else if (aTag.color === 'pink') {
+    } else if (stack.color === 'pink') {
       return (
         <h1
           className='px-2 py-1 mr-2 rounded-md bg-pink-400 dark:bg-pink-700 w-30'
-          key={aTag.id}
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
         </h1>
       );
-    } else if (aTag.color === 'gray') {
+    } else if (stack.color === 'yellow') {
       return (
         <h1
-          className='px-2 py-1 mr-2 rounded-md bg-gray-300 dark:bg-gray-700 w-30'
-          key={aTag.id}
+          className='px-2 py-1 mr-2 rounded-md bg-yellow-300 dark:bg-yellow-500 w-30'
+          key={stack.id}
         >
-          {aTag.name}
+          {stack.name}
+        </h1>
+      );
+    } else if (stack.color === 'purple') {
+      return (
+        <h1
+          className='px-2 py-1 mr-2 rounded-md bg-purple-500 dark:bg-purple-700 w-30'
+          key={stack.id}
+        >
+          {stack.name}
+        </h1>
+      );
+    } else if (stack.color === 'green') {
+      return (
+        <h1
+          className='px-2 py-1 mr-2 rounded-md bg-green-500 dark:bg-green-700 w-30'
+          key={stack.id}
+        >
+          {stack.name}
         </h1>
       );
     }
   };
 
+  // 프로젝트 상태
+  const processing = (process) => {
+    if (process === 'In progress') {
+      return (
+        <span className='px-2 py-1 mr-2 rounded-md bg-sky-400 dark:bg-sky-600 w-30'>
+          {process}
+        </span>
+      );
+    } else if (process === 'Done') {
+      return (
+        <span className='px-2 py-1 mr-2 rounded-md bg-green-400 dark:bg-green-600 w-30'>
+          {process}
+        </span>
+      );
+    } else {
+      return (
+        <span className='px-2 py-1 mr-2 rounded-md bg-slate-400 dark:bg-slate-600 w-30'>
+          {process}
+        </span>
+      );
+    }
+  };
+
   return (
-    <div className='flex flex-col m-3 bg-slate-700 rounded-xl w-full'>
+    <div className='projectCard'>
       <Image
         className='rounded-t-xl'
         src={imgSrc}
@@ -103,8 +145,8 @@ const ProjectItems = ({data}) => {
         quality={100}
       />
       <div className='p-4 flex flex-col'>
-        <h1>{title}</h1>
-        <h3>{desc}</h3>
+        <h1 className='text-2xl font-hold'>{title}</h1>
+        <h3 className='mt-4 text-xl'>{desc}</h3>
         <a target='_blank' href={notion} rel='noreferrer'>
           👉 노션 상세페이지
         </a>
@@ -116,10 +158,8 @@ const ProjectItems = ({data}) => {
           프로젝트 기간: {startDay} ~ {endDay} (
           {calculatedPeriod(startDay, endDay)})
         </p>
-        <div className='flex items-start mt-2'>
-          {stacks.map((stack) => stackCol(stack))}
-        </div>
-        <p>{progress}</p>
+        <div className='stacks'>{stacks.map((stack) => stackCol(stack))}</div>
+        <p className='processTag'>{processing(process)}</p>
       </div>
     </div>
   );
