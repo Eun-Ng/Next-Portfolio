@@ -10,17 +10,6 @@ const Projects = ({projects}) => {
         <Head>
           <title>Eun - Portfolio</title>
           <meta name='description' content='남궁은 포트폴리오' />
-          <meta property='og:type' content='website' />
-          <meta property='og:site_name' content='남궁은 포트폴리오' />
-          <meta property='og:title' content='남궁은 포트폴리오' />
-          <meta
-            property='og:description'
-            content='Next.j로 만든 포트폴리오 사이트입니다.'
-          />
-          <meta
-            property='og:image'
-            content='../public/portfolio_main_img.png'
-          />
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <h1 className='text-4xl font-bold sm:text-4xl'>
