@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'IBMPlexSansKR-400';
+  font-weight: bold;
+  font-style: normal;
+}
+
 /* for Mobile */
 body {
   min-width: fit-content;
@@ -17,7 +31,7 @@ body {
 }
 
 .projectBtn {
-  @apply inline-flex text-white bg-indigo-500 border-0 py-2 px-6 
+  @apply inline-flex text-white text-lg bg-indigo-500 border-0 py-2 px-6 
   focus:outline-none
   hover:text-white
   hover:bg-indigo-600 rounded

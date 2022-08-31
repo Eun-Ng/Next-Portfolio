@@ -11,7 +11,7 @@ const MainContents = () => {
           프론트엔드 개발자를 꿈꾸고 있습니다!
         </h2>
 
-        <p className='mb-8 leading-relaxed'>
+        <p className='mb-8 leading-relaxed text-xl'>
           꾸준하게 성장하는 개발자가 목표입니다. 리액트를 주로 다루며,
           프론트엔드 생태계 전반에 관심이 많습니다.
         </p>
