@@ -17,7 +17,7 @@ const DEFAULT_SEO = {
     site_name: '남궁은 포트폴리오',
     images: [
       {
-        url: '../public/portfolio_main_img.png',
+        url: 'https://github.com/Eun-Ng/Next-Portfolio/blob/main/public/portfolio_main_img.png?raw=true',
         width: 285,
         height: 167,
         alt: '이미지',
