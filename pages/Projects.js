@@ -32,7 +32,7 @@ const Projects = ({projects}) => {
 export default Projects;
 
 // 처음 빌드 타임에 호출
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const options = {
     method: 'POST',
     headers: {
@@ -41,7 +41,15 @@ export async function getStaticProps() {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${TOKEN}`,
     },
-    body: JSON.stringify({page_size: 100}),
+    body: JSON.stringify({
+      sorts: [
+        {
+          property: 'Name',
+          direction: 'ascending',
+        },
+      ],
+      page_size: 100,
+    }),
   };
 
   const res = await fetch(
@@ -50,6 +58,10 @@ export async function getStaticProps() {
   );
 
   const projects = await res.json();
+
+  const projectNames = projects.results.map(
+    (aProject) => aProject.properties.Name.title[0].plain_text
+  );
 
   return {
     props: {projects}, // will be passed to the page component as props
