@@ -17,7 +17,6 @@ const Projects = ({projects}) => {
           <span className='pl-4 text-orange-500'>
             {projects.results.length}
           </span>
-          개
         </h1>
 
         <div className='grid grid-cols-1 md:grid-cols-3 py-10 m-6 gap-8 w-full'>

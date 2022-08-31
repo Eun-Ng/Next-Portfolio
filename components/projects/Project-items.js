@@ -13,8 +13,6 @@ const ProjectItems = ({data}) => {
   const stacks = dataSource.Stacks.multi_select;
   const imgSrc = data.cover.file?.url || data.cover.external?.url;
 
-  console.log(dataSource.Process);
-
   // 날짜 차이 구하는 로직
   const calculatedPeriod = (startDay, endDay) => {
     const startDateArr = startDay.split('-');
@@ -147,19 +145,18 @@ const ProjectItems = ({data}) => {
       <div className='p-4 flex flex-col'>
         <h1 className='text-2xl font-hold'>{title}</h1>
         <h3 className='mt-4 text-xl'>{desc}</h3>
-        <a target='_blank' href={notion} rel='noreferrer'>
+        <a className='text-lg' target='_blank' href={notion} rel='noreferrer'>
           👉 노션 상세페이지
         </a>
 
-        <a target='_blank' href={gitHub} rel='noreferrer'>
+        <a className='text-lg' target='_blank' href={gitHub} rel='noreferrer'>
           👉 GitHub
         </a>
-        <p>
-          프로젝트 기간: {startDay} ~ {endDay} (
-          {calculatedPeriod(startDay, endDay)})
+        <p className='my-1 text-lg'>
+          기간: {startDay} ~ {endDay} ({calculatedPeriod(startDay, endDay)})
         </p>
         <div className='stacks'>{stacks.map((stack) => stackCol(stack))}</div>
-        <p className='processTag'>{processing(process)}</p>
+        <p className='processTag'>진행 상황: {processing(process)}</p>
       </div>
     </div>
   );
