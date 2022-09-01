@@ -57,12 +57,16 @@ body {
             hover:text-blue-600;
 }
 
+.projectType {
+  @apply my-2 text-slate-900 dark:text-white text-lg;
+}
+
 .processTag {
   @apply mt-2 text-slate-900 dark:text-white text-lg;
 }
 
 .stacks {
-  @apply flex flex-wrap items-start mt-2;
+  @apply flex flex-wrap items-start mt-2 text-lg;
 }
 
 .stacks > h1 {

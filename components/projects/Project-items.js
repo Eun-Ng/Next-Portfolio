@@ -3,6 +3,7 @@ import Image from 'next/image';
 const ProjectItems = ({data}) => {
   const dataSource = data.properties;
   const title = dataSource.Name.title[0].plain_text;
+  const projectType = dataSource.ProjectType.multi_select[0].name;
   const desc = dataSource.Description.rich_text[0].plain_text;
   const gitHub = dataSource.GitHub.url;
   const notion = dataSource.NotionDetail.url;
@@ -107,7 +108,24 @@ const ProjectItems = ({data}) => {
     }
   };
 
-  // 프로젝트 상태
+  // 프로젝트 종류
+  const project = (projectType) => {
+    if (projectType === 'Toy Project') {
+      return (
+        <span className='px-2 py-1 mr-2 rounded-md bg-sky-400 dark:bg-sky-600 w-30'>
+          {projectType}
+        </span>
+      );
+    } else if (projectType === 'Team Project') {
+      return (
+        <span className='px-2 py-1 mr-2 rounded-md bg-green-400 dark:bg-green-600 w-30'>
+          {projectType}
+        </span>
+      );
+    }
+  };
+
+  // 프로젝트 진행 상황
   const processing = (process) => {
     if (process === 'In progress') {
       return (
@@ -145,10 +163,10 @@ const ProjectItems = ({data}) => {
       <div className='p-4 flex flex-col'>
         <h1 className='text-2xl font-hold'>{title}</h1>
         <h3 className='mt-4 text-xl'>{desc}</h3>
+        <div className='projectType'>프로젝트 종류: {project(projectType)}</div>
         <a className='text-lg' target='_blank' href={notion} rel='noreferrer'>
           👉 노션 상세페이지
         </a>
-
         <a className='text-lg' target='_blank' href={gitHub} rel='noreferrer'>
           👉 GitHub
         </a>
