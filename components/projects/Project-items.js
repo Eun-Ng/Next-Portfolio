@@ -27,7 +27,6 @@ const ProjectItems = ({data}) => {
     const endDate = new Date(endDateArr[0], endDateArr[1], endDateArr[2]);
     const diffInMs = Math.abs(endDate - startDate);
     const result = `${diffInMs / (1000 * 60 * 60 * 24)}일`;
-
     return result;
   };
 
@@ -170,9 +169,13 @@ const ProjectItems = ({data}) => {
         <a className='text-lg' target='_blank' href={gitHub} rel='noreferrer'>
           👉 GitHub
         </a>
-        <p className='my-1 text-lg'>
-          기간: {startDay} ~ {endDay} ({calculatedPeriod(startDay, endDay)})
-        </p>
+        {endDay === null ? (
+          <p className='my-1 text-lg'>기간: {startDay} ~</p>
+        ) : (
+          <p className='my-1 text-lg'>
+            기간: {startDay} ~ {endDay} ({calculatedPeriod(startDay, endDay)})
+          </p>
+        )}
         <div className='stacks'>{stacks.map((stack) => stackCol(stack))}</div>
         <p className='processTag'>진행 상황: {processing(process)}</p>
       </div>
