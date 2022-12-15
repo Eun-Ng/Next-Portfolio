@@ -64,6 +64,6 @@ export async function getServerSideProps() {
   );
 
   return {
-    props: {projects}, // will be passed to the page component as props
+    props: {projects},
   };
 }
