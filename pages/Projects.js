@@ -1,25 +1,23 @@
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import ProjectItems from '../components/projects/Project-items';
-import {TOKEN, DATABASE_ID} from '../config';
+import { TOKEN, DATABASE_ID } from '../config';
 
-const Projects = ({projects}) => {
+const Projects = ({ projects }) => {
   return (
     <Layout>
-      <div className='flex flex-col items-center justify-center min-h-screen pr-6 mb-10'>
+      <div className="flex flex-col items-center justify-center min-h-screen pr-6 mb-10">
         <Head>
           <title>Eun - Portfolio</title>
-          <meta name='description' content='남궁은 포트폴리오' />
-          <link rel='icon' href='/favicon.ico' />
+          <meta name="description" content="남궁은 포트폴리오" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
-        <h1 className='text-4xl font-bold sm:text-4xl'>
+        <h1 className="text-4xl font-bold sm:text-4xl">
           총 프로젝트:
-          <span className='pl-4 text-orange-500'>
-            {projects.results.length}
-          </span>
+          <span className="pl-4">{projects.results.length}개</span>
         </h1>
 
-        <div className='grid grid-cols-1 md:grid-cols-3 py-10 m-6 gap-8 w-full'>
+        <div className="grid grid-cols-1 md:grid-cols-3 py-10 m-6 gap-8 w-full">
           {projects.results.map((aProject) => (
             <ProjectItems key={aProject.id} data={aProject} />
           ))}
@@ -52,18 +50,13 @@ export async function getServerSideProps() {
     }),
   };
 
-  const res = await fetch(
-    `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
-    options
-  );
+  const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options);
 
   const projects = await res.json();
 
-  const projectNames = projects.results.map(
-    (aProject) => aProject.properties.Name.title[0].plain_text
-  );
+  const projectNames = projects.results.map((aProject) => aProject.properties.Name.title[0].plain_text);
 
   return {
-    props: {projects},
+    props: { projects },
   };
 }
